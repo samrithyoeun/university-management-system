@@ -1,6 +1,7 @@
 package recyclerview;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,12 +18,12 @@ import java.util.ArrayList;
  * Created by Mister_Brown on 12/27/2016.
  */
 
-public class MRecyclerViewAdapter extends RecyclerView.Adapter<MRecyclerViewAdapter.itemViewHolder> {
+public class RowAdapter extends RecyclerView.Adapter<RowAdapter.itemViewHolder> {
         private Context context ;
         private ArrayList<RowItem> rowItem;
         private RowListener rowListener;
 
-    public MRecyclerViewAdapter(Context context, ArrayList<RowItem> rowItem) {
+    public RowAdapter(Context context, ArrayList<RowItem> rowItem) {
         this.context = context;
         this.rowItem = rowItem;
     }
@@ -46,8 +47,14 @@ public class MRecyclerViewAdapter extends RecyclerView.Adapter<MRecyclerViewAdap
 
 
             holder.txtName.setText(rowItem.get(position).getName());
-//            int id = context.getResources().getIdentifier(rowItem.get(position).getImage(), "drawable", context.getPackageName());
-//            Glide.with(context).load(id).into(holder.logo);
+
+            Uri uri = Uri.parse("android.resource://"+context.getPackageName()+"/drawable/"+rowItem.get(position).getImage());
+            try{
+                holder.logo.setImageURI(uri);
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
 
 
@@ -66,10 +73,6 @@ public class MRecyclerViewAdapter extends RecyclerView.Adapter<MRecyclerViewAdap
             super(itemView);
             txtName = (TextView)itemView.findViewById(R.id.rowName);
             logo = (ImageView) itemView.findViewById(R.id.rowImage);
-
-
-
-
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

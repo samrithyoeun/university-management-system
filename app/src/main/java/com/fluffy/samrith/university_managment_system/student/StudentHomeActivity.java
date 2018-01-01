@@ -1,18 +1,17 @@
-package com.fluffy.samrith.university_managment_system;
+package com.fluffy.samrith.university_managment_system.student;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.Toast;
+
+import com.fluffy.samrith.university_managment_system.R;
 
 import java.util.ArrayList;
 
-import recyclerview.MRecyclerViewAdapter;
+import recyclerview.RowAdapter;
 import recyclerview.RowItem;
 import recyclerview.RowListener;
 
@@ -20,27 +19,23 @@ public class StudentHomeActivity extends AppCompatActivity {
 
     private ArrayList<RowItem> RowItemList = new ArrayList<>();
     private RecyclerView recyclerView;
-    private MRecyclerViewAdapter mAdapter;
+    private RowAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home);
         prepareRowItemData();
+        this.setTitle("Welcome");
         recyclerView = (RecyclerView) findViewById(R.id.studentFeatureList);
 
-        mAdapter = new MRecyclerViewAdapter(this,RowItemList);
+        mAdapter = new RowAdapter(this,RowItemList);
 
         recyclerView.setHasFixedSize(true);
 
         // vertical RecyclerView
         // keep RowItem_list_row.xml width to `match_parent`
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(),2);
-
-        int spanCount = 3; // 3 columns
-        int spacing = 50; // 50px
-        boolean includeEdge = false;
-
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(mAdapter);
 
@@ -49,7 +44,15 @@ public class StudentHomeActivity extends AppCompatActivity {
             @Override
             public void onRowClick(RowItem row) {
                 //list what to do to each item on the row here
-                Toast.makeText(getApplicationContext(), row.getName(), Toast.LENGTH_SHORT).show();
+
+                Intent i=null;
+                if(row.id==1){
+                    i = new Intent(getApplicationContext(),ScheduleActivity.class);
+                }else{
+                    Toast.makeText(getApplicationContext(), row.getName(), Toast.LENGTH_SHORT).show();
+                }
+
+                startActivity(i);
             }
         });
 
@@ -57,10 +60,11 @@ public class StudentHomeActivity extends AppCompatActivity {
     }
 
     private void prepareRowItemData() {
-        RowItemList.add( new RowItem(1,"Check\nSchedule","schedule.png"));
-        RowItemList.add( new RowItem(1,"Check\nSchedule","schedule.png"));
-        RowItemList.add( new RowItem(1,"Check\nSchedule","schedule.png"));
-        RowItemList.add( new RowItem(1,"Check\nSchedule","schedule.png"));
+        RowItemList.add( new RowItem(1,"Check\nTimetable","schedule"));
+        RowItemList.add( new RowItem(2,"Professor\nInformation","professor"));
+        RowItemList.add( new RowItem(3,"University\nInformation","university"));
+        RowItemList.add( new RowItem(4,"Personal\nInformation","student"));
+        RowItemList.add( new RowItem(5,"Log out","logout"));
 
     }
 }

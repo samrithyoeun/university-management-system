@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.fluffy.samrith.university_managment_system.StudentHomeActivity">
+    tools:context="com.fluffy.samrith.university_managment_system.student.StudentHomeActivity">
 
 <de.hdodenhof.circleimageview.CircleImageView
     android:layout_width="match_parent"

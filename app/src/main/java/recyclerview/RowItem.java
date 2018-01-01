@@ -1,18 +1,24 @@
 package recyclerview;
 
 /**
- * Created by Mister_Brown on 12/27/2016.
+ * Created by samrith on 1/1/18.
  */
 
 public class RowItem {
-    private int id;
-    private String name;
-    private String image;
+    public int id;
+    public String name;
+    public String image;
 
     public RowItem(int id, String name, String image) {
         this.id = id;
         this.name = name;
         this.image = image;
+    }
+
+    public RowItem(int id, String name) {
+        this.id = id;
+        this.name = name;
+        this.image ="schedule";
     }
 
     public int getId() {
@@ -38,4 +44,5 @@ public class RowItem {
     public void setImage(String image) {
         this.image = image;
     }
+
 }
