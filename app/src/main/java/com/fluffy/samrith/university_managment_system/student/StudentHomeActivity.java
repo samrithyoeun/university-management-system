@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.fluffy.samrith.university_managment_system.R;
+import com.fluffy.samrith.university_managment_system.professor.ProfessorActivity;
 
 import java.util.ArrayList;
 
@@ -46,12 +47,15 @@ public class StudentHomeActivity extends AppCompatActivity {
                 //list what to do to each item on the row here
 
                 Intent i=null;
-                if(row.id==1){
-                    i = new Intent(getApplicationContext(),ScheduleActivity.class);
-                }else{
-                    Toast.makeText(getApplicationContext(), row.getName(), Toast.LENGTH_SHORT).show();
-                }
 
+                switch (row.id){
+                    case 1: i = new Intent(getApplicationContext(),ScheduleActivity.class); break;
+                    case 2: i = new Intent(getApplicationContext(),ProfessorActivity.class); break;
+                    case 3: break;
+                    case 4: i = new Intent(getApplicationContext(),PersonalInfoActivity.class); break;
+                    case 5: break;
+                    default: Toast.makeText(getApplicationContext(), row.getName(), Toast.LENGTH_SHORT).show();
+                }
                 startActivity(i);
             }
         });
