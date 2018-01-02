@@ -1,6 +1,7 @@
 package com.fluffy.samrith.university_managment_system.student;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -51,7 +52,11 @@ public class StudentHomeActivity extends AppCompatActivity {
                 switch (row.id){
                     case 1: i = new Intent(getApplicationContext(),ScheduleActivity.class); break;
                     case 2: i = new Intent(getApplicationContext(),ProfessorActivity.class); break;
-                    case 3: break;
+                    case 3:
+                            Uri uri = Uri.parse("https://www.google.com");
+                        i = new Intent(Intent.ACTION_VIEW, uri);
+
+                        break;
                     case 4: i = new Intent(getApplicationContext(),PersonalInfoActivity.class); break;
                     case 5: break;
                     default: Toast.makeText(getApplicationContext(), row.getName(), Toast.LENGTH_SHORT).show();

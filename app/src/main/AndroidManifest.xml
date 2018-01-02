@@ -12,7 +12,6 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/WhiteTheme">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,11 +22,9 @@
         <activity android:name=".student.ScheduleActivity" />
         <activity android:name=".student.PersonalInfoActivity" />
         <activity
-
             android:name=".professor.ProfessorActivity"
             android:label="@string/title_activity_professor"
             android:theme="@style/AppTheme.NoActionBar">
-
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
