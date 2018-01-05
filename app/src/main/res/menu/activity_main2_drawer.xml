@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/Home"
+            android:icon="@drawable/home"
+            android:title="Home" />
+        <item
+            android:id="@+id/College"
+            android:icon="@drawable/fac"
+            android:title="College" />
+        <item
+            android:id="@+id/Department"
+            android:icon="@drawable/dep"
+            android:title="Department" />
+        <item
+            android:id="@+id/Lecturer"
+            android:icon="@drawable/teacher"
+            android:title="Instructor" />
+        <item
+            android:id="@+id/Student"
+            android:icon="@drawable/stud"
+            android:title="Student" />
+        <item
+            android:id="@+id/Course"
+            android:icon="@drawable/books"
+            android:title="Course" />
+        <item
+            android:id="@+id/Session"
+            android:icon="@drawable/alarm"
+            android:title="Session" />
+        <item
+            android:id="@+id/Logout"
+            android:icon="@drawable/log"
+            android:title="Log out"
+            />
+    </group>
+
+
+</menu>
