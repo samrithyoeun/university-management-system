@@ -14,9 +14,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.fluffy.samrith.university_managment_system.admin.CollegeFragment;
+import com.fluffy.samrith.university_managment_system.admin.CourseFragment;
+import com.fluffy.samrith.university_managment_system.admin.DepartmentFragment;
 import com.fluffy.samrith.university_managment_system.admin.HomeFragment;
+import com.fluffy.samrith.university_managment_system.admin.LecturerFragment;
+import com.fluffy.samrith.university_managment_system.admin.SessionFragment;
+import com.fluffy.samrith.university_managment_system.admin.StudentFragment;
+
+import recyclerview.CreateToast;
 
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,17 +33,19 @@ public class Main2Activity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        Fragment newFragment = new HomeFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.commit();
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack
+        transaction.replace(R.id.fragmentCon, newFragment);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        this.setTitle("Welcome");
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -43,8 +53,8 @@ public class Main2Activity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+
+
     }
 
     @Override
@@ -60,7 +70,6 @@ public class Main2Activity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main2, menu);
         return true;
     }
 
@@ -95,6 +104,7 @@ public class Main2Activity extends AppCompatActivity
             transaction.addToBackStack(null);
             // Commit the transaction
             transaction.commit();
+            this.setTitle("Welcome");
         } else if (id == R.id.College) {
             // Create new fragment and transaction
             Fragment newFragment = new CollegeFragment();
@@ -105,17 +115,71 @@ public class Main2Activity extends AppCompatActivity
             transaction.addToBackStack(null);
             // Commit the transaction
             transaction.commit();
+            this.setTitle("College");
 
 
         } else if (id == R.id.Department) {
+            // Create new fragment and transaction
+            Fragment newFragment = new DepartmentFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack
+            transaction.replace(R.id.fragmentCon, newFragment);
+            transaction.addToBackStack(null);
+            // Commit the transaction
+            transaction.commit();
+            this.setTitle("Department");
 
         } else if (id == R.id.Lecturer) {
+            // Create new fragment and transaction
+            Fragment newFragment = new LecturerFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack
+            transaction.replace(R.id.fragmentCon, newFragment);
+            transaction.addToBackStack(null);
+            // Commit the transaction
+            transaction.commit();
+            this.setTitle("Instructor");
+
 
         } else if (id == R.id.Student) {
+            // Create new fragment and transaction
+            Fragment newFragment = new StudentFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack
+            transaction.replace(R.id.fragmentCon, newFragment);
+            transaction.addToBackStack(null);
+            // Commit the transaction
+            transaction.commit();
+            this.setTitle("Student");
+
 
         } else if (id == R.id.Course) {
+            // Create new fragment and transaction
+            Fragment newFragment = new CourseFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack
+            transaction.replace(R.id.fragmentCon, newFragment);
+            transaction.addToBackStack(null);
+            // Commit the transaction
+            transaction.commit();
+            this.setTitle("Course");
+
 
         } else if (id == R.id.Session) {
+            // Create new fragment and transaction
+            Fragment newFragment = new SessionFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack
+            transaction.replace(R.id.fragmentCon, newFragment);
+            transaction.addToBackStack(null);
+            // Commit the transaction
+            transaction.commit();
+            this.setTitle("Session");
 
         }
 
