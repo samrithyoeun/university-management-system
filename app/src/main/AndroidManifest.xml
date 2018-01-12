@@ -36,7 +36,66 @@
         <activity
             android:name=".Main2Activity"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".professor.ProfessorEditActivity" />
+        <activity
+            android:name=".college.CollegeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".department.DepartmentActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".students.StudentActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".course.CourseActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".session.SessionActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".college.CollegeEditActivity" />
+        <activity android:name=".department.DepartmentEditActivity" />
+        <activity android:name=".session.SessionEditActivity"></activity>
     </application>
 
 </manifest>

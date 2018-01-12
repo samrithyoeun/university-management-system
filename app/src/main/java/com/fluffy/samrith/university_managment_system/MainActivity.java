@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.fluffy.samrith.university_managment_system.college.CollegeActivity;
+
 public class MainActivity extends AppCompatActivity {
     EditText username;
     EditText password;
@@ -22,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         login = (Button)findViewById(R.id.login);
 
         login.setOnClickListener(view->{
-            Intent i = new Intent(this,Main2Activity.class);
+            Intent i = new Intent(this,CollegeActivity.class);
             startActivity(i);
         });
 
