@@ -111,14 +111,17 @@ public class CollegeActivity extends AppCompatActivity {
                         switch (function) {
                             case "view":
                                 url = Database.COLLEGE+"?opt=getdetail&mainkey="+row.getName();
-                                gotoDetail(row.getName(),url);
+                                gotoDetail(url);
                                 break;
+
                             case "delete":
                                 url=  Database.COLLEGE+"?opt=del&mainkey="+row.getName();
-                                del(row.getName(),url);
+                                del(url);
                                 break;
-                            case "edit":
 
+                            case "edit":
+                                url = Database.COLLEGE+"?opt=getdetail&mainkey="+row.getName();
+                                gotoUpdate(url);
                                 break;
 
                         }
@@ -131,8 +134,38 @@ public class CollegeActivity extends AppCompatActivity {
 
 
 
+    public void gotoUpdate(String url ){
+        Log.d("activities",this.getClass().getSimpleName());
 
-    public void gotoDetail(String name,String url ){
+        JsonArrayRequest js = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("volley",url);
+
+                try{
+                    String text ="";
+                    Intent i = new Intent(getApplicationContext(),CollegeEditActivity.class);
+                    i.putExtra("func","edit");
+                    i.putExtra("name", response.getJSONObject(0).getString("CName"));
+                    i.putExtra("office",response.getJSONObject(0).getString("COffice"));
+                    i.putExtra("phone",response.getJSONObject(0).getString("CPhone"));
+                    startActivity(i);
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Log.d("volley",url);
+            }
+        });
+
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(js);
+    }
+    public void gotoDetail(String url ){
 
 
             Log.d("activities",this.getClass().getSimpleName());
@@ -181,7 +214,7 @@ public class CollegeActivity extends AppCompatActivity {
             MySingleton.getInstance(getApplicationContext()).addToRequestQueue(js);
 
 }
-    public void del(String name, String url ){
+    public void del( String url ){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Attention!");
         builder.setMessage("Do you want to delete this entry?");
