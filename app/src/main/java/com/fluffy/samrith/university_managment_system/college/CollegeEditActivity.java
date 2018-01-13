@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -44,7 +45,7 @@ public class CollegeEditActivity extends AppCompatActivity {
         b = getIntent().getExtras();
 
         if (b.getString("func").equals("edit")){
-            this.setTitle("Update");
+            this.setTitle("Update College");
                 name.setText(b.getString("name"));
                 office.setText(b.getString("office"));
                 phone.setText(b.getString("phone"));
@@ -52,7 +53,7 @@ public class CollegeEditActivity extends AppCompatActivity {
 
         }
         else{
-
+            this.setTitle("Add College");
         }
 
         saves.setOnClickListener(new View.OnClickListener() {
@@ -63,10 +64,15 @@ public class CollegeEditActivity extends AppCompatActivity {
                     url+= "&name="+name.getText().toString();
                     url+= "&office="+office.getText().toString();
                     url+= "&phone="+phone.getText().toString();
-
+                    Log.d("volley",url);
                     updateCollege(url);
                 }else{
-
+                    url = Database.COLLEGE+"?opt=adds";
+                    url+= "&name="+name.getText().toString();
+                    url+= "&office="+office.getText().toString();
+                    url+= "&phone="+phone.getText().toString();
+                    Log.d("volley",url);
+                    addCollege(url);
                 }
             }
         });
@@ -78,7 +84,7 @@ public class CollegeEditActivity extends AppCompatActivity {
 
 
         Log.d("activities",this.getClass().getSimpleName());
-
+        Log.d("volley",url);
         StringRequest js = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String string) {
@@ -102,5 +108,32 @@ public class CollegeEditActivity extends AppCompatActivity {
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(js);
 
     }
+    public void addCollege(String url){
+        Log.d("activities",this.getClass().getSimpleName());
 
+        StringRequest js = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String string) {
+                if (string.contains(1+"")){
+                    Toast.makeText(CollegeEditActivity.this, "Add new entry", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
+
+                }
+                else{
+                    Log.d("volley",string);
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Log.d("volley",url);
+            }
+        });
+
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(js);
+
+    }
 }

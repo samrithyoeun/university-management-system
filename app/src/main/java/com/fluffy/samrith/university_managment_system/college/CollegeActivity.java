@@ -23,6 +23,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.fluffy.samrith.university_managment_system.DetailActivity;
 import com.fluffy.samrith.university_managment_system.R;
 import com.fluffy.samrith.university_managment_system.model.College;
@@ -61,7 +62,7 @@ public class CollegeActivity extends AppCompatActivity {
             case "view":
                 this.setTitle("List of College");
                 break;
-            case "delete":
+            case "delete": case  "edit":
                 this.setTitle("Select College ");
 
         }
@@ -120,6 +121,7 @@ public class CollegeActivity extends AppCompatActivity {
                                 break;
 
                             case "edit":
+
                                 url = Database.COLLEGE+"?opt=getdetail&mainkey="+row.getName();
                                 gotoUpdate(url);
                                 break;
@@ -149,7 +151,9 @@ public class CollegeActivity extends AppCompatActivity {
                     i.putExtra("name", response.getJSONObject(0).getString("CName"));
                     i.putExtra("office",response.getJSONObject(0).getString("COffice"));
                     i.putExtra("phone",response.getJSONObject(0).getString("CPhone"));
+
                     startActivity(i);
+                    finish();
 
                 }catch (Exception e){
                     e.printStackTrace();
@@ -223,10 +227,21 @@ public class CollegeActivity extends AppCompatActivity {
         builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                JsonArrayRequest js = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+                Log.d("activities",this.getClass().getSimpleName());
+
+                StringRequest js = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONArray response) {
-                        Toast.makeText(CollegeActivity.this, "Entry Deleted! ", Toast.LENGTH_SHORT).show();
+                    public void onResponse(String response) {
+                        if (response.contains("true")){
+                            Toast.makeText(CollegeActivity.this, "Delete this entry", Toast.LENGTH_SHORT).show();
+                            onBackPressed();
+
+                        }
+                        else{
+                            Log.d("volley",response);
+                        }
+
+
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -237,6 +252,7 @@ public class CollegeActivity extends AppCompatActivity {
                 });
 
                 MySingleton.getInstance(getApplicationContext()).addToRequestQueue(js);
+
             }
         });
         builder.setNegativeButton("Cancel", null);
