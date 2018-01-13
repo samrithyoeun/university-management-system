@@ -1,8 +1,10 @@
 package com.fluffy.samrith.university_managment_system;
 
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -26,20 +28,40 @@ public class DetailActivity extends AppCompatActivity {
     private ArrayList<RowItem> RowItemList = new ArrayList<>();
     TextView tx;
     String text ="";
+    ImageView logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         this.setTitle("Detail");
+        logo = (ImageView)findViewById(R.id.image);
+
+
         tx = (TextView)findViewById(R.id.text) ;
         Bundle b = new Bundle();
         b = getIntent().getExtras();
+        String type="";
+        switch (b.getString("type")){
+            case "course":
+                type="course";
+                break;
+
+        }
+        Uri uri = Uri.parse("android.resource://"+getApplicationContext().getPackageName()+"/drawable/"+type);
+        try{
+            logo.setImageURI(uri);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
 
 
 
-                String mainkey = b.getString("text");
+
+                String mainkey = b.getString("text")
+                        .replace(" ","\u00A0");
                 tx.setText(mainkey);
 
 
