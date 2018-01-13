@@ -17,9 +17,9 @@ import java.util.ArrayList;
 
 import recyclerview.RowAdapter;
 import recyclerview.RowItem;
+import recyclerview.RowListener;
 
 public class CourseActivity extends AppCompatActivity {
-
     private SearchView searchView;
     private ArrayList<RowItem> RowItemList = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -34,7 +34,7 @@ public class CourseActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        this.setTitle("Welcome");
+        this.setTitle("College");
         recyclerView = (RecyclerView) findViewById(R.id.professorList);
 
         mAdapter = new RowAdapter(this,RowItemList);
@@ -45,6 +45,12 @@ public class CourseActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(mAdapter);
         prepareRowItemData();
+        mAdapter.setOnClick(new RowListener() {
+            @Override
+            public void onRowClick(RowItem row) {
+
+            }
+        });
 
     }
 

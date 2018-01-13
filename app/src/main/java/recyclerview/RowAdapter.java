@@ -124,9 +124,13 @@ public class RowAdapter extends RecyclerView.Adapter<RowAdapter.itemViewHolder> 
                 @Override
                 public void onClick(View view) {
 
-                    int id = listFiltered.get(getAdapterPosition()).getId();
-                    if(listFiltered != null)
+                    if(listFiltered != null){
                         rowListener.onRowClick(listFiltered.get(getAdapterPosition()));
+                    }else{
+                        rowListener.onRowClick(rowItem.get(getAdapterPosition()));
+                    }
+
+                    Log.d("rowClick",listFiltered.size() +"--"+rowItem.size());
                 }
             });
         }

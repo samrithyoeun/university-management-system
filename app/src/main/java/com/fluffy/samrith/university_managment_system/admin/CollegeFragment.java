@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.fluffy.samrith.university_managment_system.R;
+import com.fluffy.samrith.university_managment_system.college.CollegeActivity;
+import com.fluffy.samrith.university_managment_system.college.CollegeEditActivity;
 import com.fluffy.samrith.university_managment_system.professor.ProfessorActivity;
 import com.fluffy.samrith.university_managment_system.student.PersonalInfoActivity;
 import com.fluffy.samrith.university_managment_system.student.ScheduleActivity;
@@ -60,7 +62,30 @@ public class CollegeFragment extends Fragment {
         mAdapter.setOnClick(new RowListener() {
             @Override
             public void onRowClick(RowItem row) {
+                Intent i ;
+                switch (row.getId()){
+                    case 1:
+                        i = new Intent(getContext(), CollegeActivity.class);
+                        i.putExtra("func","view");
+                        startActivity(i);
+                        break;
+                    case 2:
+                        i = new Intent(getContext(), CollegeEditActivity.class);
+                        i.putExtra("func","add");
+                        startActivity(i);
+                        break;
+                    case 3:
+                        i = new Intent(getContext(), CollegeActivity.class);
+                        i.putExtra("func","edit");
+                        startActivity(i);
+                        break;
+                    case 4:
+                        i = new Intent(getContext(), CollegeActivity.class);
+                        i.putExtra("func","delete");
+                        startActivity(i);
+                        break;
 
+                }
             }
         });
 

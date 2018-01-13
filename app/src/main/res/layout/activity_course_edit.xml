@@ -6,11 +6,12 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context="com.fluffy.samrith.university_managment_system.session.SessionEditActivity">
+    tools:context="com.fluffy.samrith.university_managment_system.course.CourseEditActivity">
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="130dp"
-        android:src="@drawable/session"
+        android:src="@drawable/course"
         android:scaleType="centerInside"
         android:id="@+id/image"
         />
@@ -19,46 +20,39 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="ID"
+        android:hint="Code"
         android:singleLine="true"
         android:imeOptions="actionNext"
-        android:id="@+id/id"/>
+        android:id="@+id/code"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="SecNo"
-        android:id="@+id/secno"
+        android:hint="Credit"
+        android:id="@+id/credit"
         android:singleLine="true"
         android:imeOptions="actionNext"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Semester"
+        android:hint="Name"
         android:singleLine="true"
         android:imeOptions="actionNext"
         android:id="@+id/semester"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Year"
+        android:hint="Level"
         android:singleLine="true"
         android:imeOptions="actionNext"
-        android:id="@+id/year"/>
+        android:id="@+id/level"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Room"
+        android:hint="Description"
         android:singleLine="true"
         android:imeOptions="actionNext"
-        android:id="@+id/room"/>
+        android:id="@+id/desc"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="DayTime"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
-        android:id="@+id/daytime"/>
     <android.support.v7.widget.AppCompatButton
         android:layout_marginTop="30dp"
         xmlns:app="http://schemas.android.com/apk/res-auto"

@@ -1,6 +1,7 @@
 package com.fluffy.samrith.university_managment_system.admin;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fluffy.samrith.university_managment_system.R;
+import com.fluffy.samrith.university_managment_system.course.CourseActivity;
+import com.fluffy.samrith.university_managment_system.course.CourseEditActivity;
+import com.fluffy.samrith.university_managment_system.professor.ProfessorActivity;
+import com.fluffy.samrith.university_managment_system.professor.ProfessorEditActivity;
 
 import java.util.ArrayList;
 
@@ -53,7 +58,29 @@ public class LecturerFragment extends Fragment {
         mAdapter.setOnClick(new RowListener() {
             @Override
             public void onRowClick(RowItem row) {
-
+                Intent i ;
+                switch (row.getId()){
+                    case 1:
+                        i = new Intent(getContext(), ProfessorActivity.class);
+                        i.putExtra("func","view");
+                        startActivity(i);
+                        break;
+                    case 2:
+                        i = new Intent(getContext(), ProfessorEditActivity.class);
+                        i.putExtra("func","add");
+                        startActivity(i);
+                        break;
+                    case 3:
+                        i = new Intent(getContext(), ProfessorActivity.class);
+                        i.putExtra("func","edit");
+                        startActivity(i);
+                        break;
+                    case 4:
+                        i = new Intent(getContext(), ProfessorActivity.class);
+                        i.putExtra("func","delete");
+                        startActivity(i);
+                        break;
+                }
             }
         });
 

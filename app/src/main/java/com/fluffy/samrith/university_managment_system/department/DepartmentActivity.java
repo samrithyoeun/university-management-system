@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import recyclerview.RowAdapter;
 import recyclerview.RowItem;
+import recyclerview.RowListener;
 
 public class DepartmentActivity extends AppCompatActivity {
 
@@ -29,12 +30,12 @@ public class DepartmentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_course);
+        setContentView(R.layout.activity_department);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
-        this.setTitle("Welcome");
+        this.setTitle("College");
         recyclerView = (RecyclerView) findViewById(R.id.professorList);
 
         mAdapter = new RowAdapter(this,RowItemList);
@@ -45,6 +46,12 @@ public class DepartmentActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(mAdapter);
         prepareRowItemData();
+        mAdapter.setOnClick(new RowListener() {
+            @Override
+            public void onRowClick(RowItem row) {
+
+            }
+        });
 
     }
 
@@ -115,3 +122,5 @@ public class DepartmentActivity extends AppCompatActivity {
     }
 
 }
+
+

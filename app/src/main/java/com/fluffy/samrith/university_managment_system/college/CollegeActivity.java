@@ -11,12 +11,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.fluffy.samrith.university_managment_system.R;
+import com.fluffy.samrith.university_managment_system.sampledata.Database;
+import com.fluffy.samrith.university_managment_system.sampledata.MySingleton;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 import recyclerview.RowAdapter;
 import recyclerview.RowItem;
+import recyclerview.RowListener;
 
 public class CollegeActivity extends AppCompatActivity {
 
@@ -36,26 +46,58 @@ public class CollegeActivity extends AppCompatActivity {
 
         this.setTitle("College");
         recyclerView = (RecyclerView) findViewById(R.id.professorList);
-
-        mAdapter = new RowAdapter(this,RowItemList);
+        prepareRowItemData(Database.COLLEGE);
 
         // vertical RecyclerView
         // keep RowItem_list_row.xml width to `match_parent`
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(mAdapter);
-        prepareRowItemData();
+
+
+
 
     }
 
-    private void prepareRowItemData() {
-        RowItemList.add( new RowItem(1,"Daru Sima","schedule"));
-        RowItemList.add( new RowItem(2,"Daru Sima","professor"));
-        RowItemList.add( new RowItem(3,"Samrith Yoeun","university"));
-        RowItemList.add( new RowItem(4,"Putthira Tes","student"));
+    private void prepareRowItemData(String url) {
+        ArrayList<RowItem> row = new ArrayList<>();
 
-        mAdapter.notifyDataSetChanged();
+        JsonArrayRequest js = new JsonArrayRequest(Request.Method.POST, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                int count=0;
+                try{
+                    JSONObject j = response.getJSONObject(count);
+                    while(count<response.length()) {
+                        row.add(new RowItem(j.getInt("id"),j.getString("name"),j.getString("flag")));
+                        count++;
+                    }
+                    mAdapter = new RowAdapter(getApplicationContext(),row);
+                    recyclerView.setAdapter(mAdapter);
+                    mAdapter.setOnClick(new RowListener() {
+                        @Override
+                        public void onRowClick(RowItem row) {
+
+                        }
+                    });
+
+
+
+                }catch (Exception e){}
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(js);
+
+
     }
+
+
 
 
     @Override

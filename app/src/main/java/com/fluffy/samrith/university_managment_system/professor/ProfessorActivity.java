@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import recyclerview.RowAdapter;
 import recyclerview.RowItem;
+import recyclerview.RowListener;
 
 public class ProfessorActivity extends AppCompatActivity {
 
@@ -33,7 +34,7 @@ public class ProfessorActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        this.setTitle("Welcome");
+        this.setTitle("College");
         recyclerView = (RecyclerView) findViewById(R.id.professorList);
 
         mAdapter = new RowAdapter(this,RowItemList);
@@ -43,6 +44,12 @@ public class ProfessorActivity extends AppCompatActivity {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(mAdapter);
+        mAdapter.setOnClick(new RowListener() {
+            @Override
+            public void onRowClick(RowItem row) {
+
+            }
+        });
         prepareRowItemData();
 
     }
