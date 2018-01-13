@@ -31,7 +31,7 @@ public class HomeFragment extends Fragment {
 
 
     private View root;
-    private ArrayList<RowItem> RowItemList = new ArrayList<>();
+    private ArrayList<RowItem> RowItemList ;
     private RecyclerView recyclerView;
     private RowAdapter mAdapter;
 
@@ -43,19 +43,24 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
          root =inflater.inflate(R.layout.fragment_home, container, false);
 
-        prepareRowItemData();
         recyclerView = (RecyclerView)root.findViewById(R.id.recyclerViewList);
-
-        mAdapter = new RowAdapter(getContext(),RowItemList);
-
         recyclerView.setHasFixedSize(true);
 
+
+        RowItemList = new ArrayList<>();
+        RowItemList.add( new RowItem(1,"College 5","faculty"));
+        RowItemList.add( new RowItem(2,"Department 23","department"));
+        RowItemList.add( new RowItem(3,"Instructor 32","professor"));
+        RowItemList.add( new RowItem(4,"Student 300","student"));
+        RowItemList.add( new RowItem(5,"Course 23","course"));
+        RowItemList.add( new RowItem(6,"Session 213","session"));
+
+        mAdapter = new RowAdapter(getContext(),RowItemList);
         // vertical RecyclerView
         // keep RowItem_list_row.xml width to `match_parent`
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(),2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(mAdapter);
-
         // row click listener
         mAdapter.setOnClick(new RowListener() {
             @Override
@@ -64,16 +69,6 @@ public class HomeFragment extends Fragment {
             }});
 
         return root;
-
-    }
-
-    private void prepareRowItemData() {
-        RowItemList.add( new RowItem(1,"College 5","faculty"));
-        RowItemList.add( new RowItem(2,"Department 23","department"));
-        RowItemList.add( new RowItem(3,"Instructor 32","professor"));
-        RowItemList.add( new RowItem(4,"Student 300","student"));
-        RowItemList.add( new RowItem(5,"Course 23","course"));
-        RowItemList.add( new RowItem(6,"Session 213","session"));
 
     }
 }

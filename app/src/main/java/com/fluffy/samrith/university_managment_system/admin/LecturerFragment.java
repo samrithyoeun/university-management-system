@@ -29,7 +29,7 @@ public class LecturerFragment extends Fragment {
 
 
     private View root;
-    private ArrayList<RowItem> RowItemList = new ArrayList<>();
+    private ArrayList<RowItem> RowItemList;
     private RecyclerView recyclerView;
     private RowAdapter mAdapter;
 
@@ -89,6 +89,7 @@ public class LecturerFragment extends Fragment {
     }
 
     private void prepareRowItemData() {
+        RowItemList = new ArrayList<>();
         RowItemList.add( new RowItem(1,"View Instrutor","zoom"));
         RowItemList.add( new RowItem(2,"Add Instrutor","createnew"));
         RowItemList.add( new RowItem(3,"Edit Instrutor","pencil"));

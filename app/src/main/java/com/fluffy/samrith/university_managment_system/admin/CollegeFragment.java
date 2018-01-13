@@ -33,7 +33,7 @@ public class CollegeFragment extends Fragment {
 
 
     private View root;
-    private ArrayList<RowItem> RowItemList = new ArrayList<>();
+    private ArrayList<RowItem> RowItemList ;
     private RecyclerView recyclerView;
     private RowAdapter mAdapter;
 
@@ -93,7 +93,9 @@ public class CollegeFragment extends Fragment {
 
     }
 
+
     private void prepareRowItemData() {
+        RowItemList = new ArrayList<>();
         RowItemList.add( new RowItem(1,"View College","zoom"));
         RowItemList.add( new RowItem(2,"Add College","createnew"));
         RowItemList.add( new RowItem(3,"Edit College","pencil"));

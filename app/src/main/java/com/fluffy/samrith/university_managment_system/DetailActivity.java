@@ -31,7 +31,7 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
+        this.setTitle("Detail");
         tx = (TextView)findViewById(R.id.text) ;
         Bundle b = new Bundle();
         b = getIntent().getExtras();

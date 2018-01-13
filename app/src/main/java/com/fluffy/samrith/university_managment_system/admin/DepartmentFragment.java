@@ -29,7 +29,7 @@ public class DepartmentFragment extends Fragment {
 
 
     private View root;
-    private ArrayList<RowItem> RowItemList = new ArrayList<>();
+    private ArrayList<RowItem> RowItemList;
     private RecyclerView recyclerView;
     private RowAdapter mAdapter;
 
@@ -88,7 +88,10 @@ public class DepartmentFragment extends Fragment {
 
     }
 
+
     private void prepareRowItemData() {
+
+        RowItemList = new ArrayList<>();
         RowItemList.add( new RowItem(1,"View Department","zoom"));
         RowItemList.add( new RowItem(2,"Add Department","createnew"));
         RowItemList.add( new RowItem(3,"Edit Department","pencil"));
