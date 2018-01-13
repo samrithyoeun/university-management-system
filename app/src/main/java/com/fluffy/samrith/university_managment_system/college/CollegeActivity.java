@@ -1,21 +1,31 @@
 package com.fluffy.samrith.university_managment_system.college;
 
+
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.telecom.Call;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.fluffy.samrith.university_managment_system.DetailActivity;
 import com.fluffy.samrith.university_managment_system.R;
+import com.fluffy.samrith.university_managment_system.model.College;
 import com.fluffy.samrith.university_managment_system.sampledata.Database;
 import com.fluffy.samrith.university_managment_system.sampledata.MySingleton;
 
@@ -34,6 +44,7 @@ public class CollegeActivity extends AppCompatActivity {
     private ArrayList<RowItem> RowItemList = new ArrayList<>();
     private RecyclerView recyclerView;
     private RowAdapter mAdapter;
+    String function;
 
 
     @Override
@@ -43,62 +54,164 @@ public class CollegeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Bundle b = new Bundle();
+        b = getIntent().getExtras();
+        function = b.getString("func");
+        switch (function) {
+            case "view":
+                this.setTitle("List of College");
+                break;
+            case "delete":
+                this.setTitle("Select College ");
 
-        this.setTitle("College");
-        recyclerView = (RecyclerView) findViewById(R.id.professorList);
-        prepareRowItemData(Database.COLLEGE);
-
-        // vertical RecyclerView
-        // keep RowItem_list_row.xml width to `match_parent`
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
+        }
+                recyclerView = (RecyclerView) findViewById(R.id.professorList);
+                mAdapter = new RowAdapter(this, RowItemList);
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                recyclerView.setLayoutManager(mLayoutManager);
+                recyclerView.setAdapter(mAdapter);
 
 
+                String url = Database.COLLEGE+"?opt=getall";
+                Log.d("volley",url+"");
+                JsonArrayRequest js = new JsonArrayRequest(Request.Method.GET,url , null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d("volley",url);
+                        int count = 0;
+                        try {
+                            while (count < response.length()) {
+                                JSONObject j = response.getJSONObject(count);
+                                RowItemList.add(new College(1, j.getString("CName"), j.getString("COffice"), j.getString("CPhone")));
+                                Log.d("volley", RowItemList.get(count).toString());
+                                count++;
+
+                            }
+
+                            mAdapter.notifyDataSetChanged();
 
 
-    }
-
-    private void prepareRowItemData(String url) {
-        ArrayList<RowItem> row = new ArrayList<>();
-
-        JsonArrayRequest js = new JsonArrayRequest(Request.Method.POST, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-
-                int count=0;
-                try{
-                    JSONObject j = response.getJSONObject(count);
-                    while(count<response.length()) {
-                        row.add(new RowItem(j.getInt("id"),j.getString("name"),j.getString("flag")));
-                        count++;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
-                    mAdapter = new RowAdapter(getApplicationContext(),row);
-                    recyclerView.setAdapter(mAdapter);
-                    mAdapter.setOnClick(new RowListener() {
-                        @Override
-                        public void onRowClick(RowItem row) {
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+                MySingleton.getInstance(this).addToRequestQueue(js);
+
+
+                mAdapter.setOnClick(new RowListener() {
+                    @Override
+                    public void onRowClick(RowItem row) {
+                        String url;
+                        switch (function) {
+                            case "view":
+                                url = Database.COLLEGE+"?opt=getdetail&mainkey="+row.getName();
+                                gotoDetail(row.getName(),url);
+                                break;
+                            case "delete":
+                                url=  Database.COLLEGE+"?opt=del&mainkey="+row.getName();
+                                del(row.getName(),url);
+                                break;
+                            case "edit":
+
+                                break;
 
                         }
-                    });
+                    }
+                });
+
+        }
 
 
 
-                }catch (Exception e){}
-            }
-        }, new Response.ErrorListener() {
+
+
+
+    public void gotoDetail(String name,String url ){
+
+
+            Log.d("activities",this.getClass().getSimpleName());
+
+            JsonArrayRequest js = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+                @Override
+                public void onResponse(JSONArray response) {
+                    Log.d("volley",url);
+
+                    try{
+                        String text ="";
+                        text += "\nName   :  "+  response.getJSONObject(0).getString("CName");
+                        text += "\nOffice :  "+  response.getJSONObject(0).getString("COffice");
+                        text += "\nPhone  :  "+  response.getJSONObject(0).getString("CPhone");
+                        text +="\n";
+
+                        text += "\nTotal Lecturer   :  "+  response.getJSONObject(1).getString("lecturer");
+                        text +="\n";
+
+                        text +="\nDepartments :";
+                        int count=2;
+                        while(count<response.length()-1) {
+                            JSONObject j = response.getJSONObject(count);
+                            text+= "\n"+j.getString("DName");
+                            count++;
+                        }
+
+                        Log.d("volley",text);
+
+                        Intent i = new Intent(getApplicationContext(), DetailActivity.class);
+                        i.putExtra("text",text);
+                        startActivity(i);
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                    Log.d("volley",url);
+                }
+            });
+
+            MySingleton.getInstance(getApplicationContext()).addToRequestQueue(js);
+
+}
+    public void del(String name, String url ){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Attention!");
+        builder.setMessage("Do you want to delete this entry?");
+
+        // add the buttons
+        builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                JsonArrayRequest js = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Toast.makeText(CollegeActivity.this, "Entry Deleted! ", Toast.LENGTH_SHORT).show();
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        Log.d("volley",url);
+                    }
+                });
 
+                MySingleton.getInstance(getApplicationContext()).addToRequestQueue(js);
             }
         });
+        builder.setNegativeButton("Cancel", null);
 
-        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(js);
-
-
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

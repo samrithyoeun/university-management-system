@@ -1,21 +1,5 @@
 package com.fluffy.samrith.university_managment_system.sampledata;
 
-import android.content.Context;
-import android.widget.Toast;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.fluffy.samrith.university_managment_system.MainActivity;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-
-import recyclerview.RowAdapter;
-import recyclerview.RowItem;
 
 /**
  * Created by samrith on 13/1/18.
@@ -31,4 +15,5 @@ public class Database {
     public static final String SESSION = HOST+ "session.php";
 
 
+    public static final String DETAIL = HOST+"detail.php";
 }

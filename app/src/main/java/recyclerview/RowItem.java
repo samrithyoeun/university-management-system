@@ -15,6 +15,10 @@ public class RowItem {
         this.image = image;
     }
 
+    public RowItem() {
+
+    }
+
     public RowItem(int id, String name) {
         this.id = id;
         this.name = name;

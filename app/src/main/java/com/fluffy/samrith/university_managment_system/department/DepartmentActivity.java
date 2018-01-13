@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.fluffy.samrith.university_managment_system.R;
+import com.fluffy.samrith.university_managment_system.model.College;
+import com.fluffy.samrith.university_managment_system.model.Department;
 
 import java.util.ArrayList;
 
@@ -56,7 +58,7 @@ public class DepartmentActivity extends AppCompatActivity {
     }
 
     private void prepareRowItemData() {
-        RowItemList.add( new RowItem(1,"Daru Sima","schedule"));
+        RowItemList.add( new College(1,"college","college","23424"));
         RowItemList.add( new RowItem(2,"Daru Sima","professor"));
         RowItemList.add( new RowItem(3,"Samrith Yoeun","university"));
         RowItemList.add( new RowItem(4,"Putthira Tes","student"));

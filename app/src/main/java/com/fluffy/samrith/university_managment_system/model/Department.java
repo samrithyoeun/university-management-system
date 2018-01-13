@@ -24,6 +24,11 @@ public class Department  extends RowItem{
         if(image.equals("")) image="department";
     }
 
+    public Department(String dName, String dOffice) {
+        name =dName;
+        office =dOffice;
+    }
+
     public String getCode() {
         return code;
     }
