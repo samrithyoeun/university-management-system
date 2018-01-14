@@ -201,6 +201,7 @@ public class CollegeActivity extends AppCompatActivity {
 
                         Intent i = new Intent(getApplicationContext(), DetailActivity.class);
                         i.putExtra("text",text);
+                        i.putExtra("type","faculty");
                         startActivity(i);
 
                     }catch (Exception e){

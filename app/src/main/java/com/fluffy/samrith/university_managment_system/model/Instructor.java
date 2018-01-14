@@ -10,10 +10,13 @@ public class Instructor extends RowItem {
     int range;
     String office;
     String phone;
+    String CName;
+    int dcode;
 
     public Instructor(int id, String name, String image) {
         super(id, name, image);
     }
+
 
     public Instructor(int id, String name, String image, int range, String office, String phone) {
         super(id, name, image);
@@ -21,6 +24,32 @@ public class Instructor extends RowItem {
         this.office = office;
         this.phone = phone;
         if (image.equals("")) image= "instructor";
+    }
+
+    public Instructor(int id, String college_cName, int dept_dCode, String iName) {
+        this.id = id;
+        this.CName = college_cName;
+        this.dcode=  dept_dCode;
+        name = iName;
+        image ="professor";
+
+
+    }
+
+    public String getCName() {
+        return CName;
+    }
+
+    public void setCName(String CName) {
+        this.CName = CName;
+    }
+
+    public int getDcode() {
+        return dcode;
+    }
+
+    public void setDcode(int dcode) {
+        this.dcode = dcode;
     }
 
     public int getRange() {

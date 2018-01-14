@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="ID"
-        android:id="@+id/id"
+        android:id="@+id/code"
         android:singleLine="true"
         android:imeOptions="actionNext"/>
     <EditText
@@ -31,6 +31,27 @@
         android:singleLine="true"
         android:imeOptions="actionNext"
         android:id="@+id/name"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Department Code"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        android:id="@+id/dept"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="College Code"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        android:id="@+id/college"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Start Date"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        android:id="@+id/dates"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,6 +66,14 @@
         android:singleLine="true"
         android:imeOptions="actionNext"
         android:id="@+id/phone"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Rank"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        android:id="@+id/rank"/>
 
     <android.support.v7.widget.AppCompatButton
         android:layout_marginTop="30dp"
