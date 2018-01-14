@@ -1,5 +1,7 @@
 package com.fluffy.samrith.university_managment_system;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -180,6 +182,18 @@ public class Main2Activity extends AppCompatActivity
             // Commit the transaction
             transaction.commit();
             this.setTitle("Session");
+
+
+        }else if(id ==R.id.Logout){
+
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("YOUR_PREF_NAME", MODE_PRIVATE);
+            SharedPreferences.Editor edt = pref.edit();
+            edt.clear();
+            edt.commit();
+            Intent l = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(l);
+
+            finish();
 
         }
 

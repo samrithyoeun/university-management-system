@@ -149,11 +149,12 @@ public class CourseActivity extends AppCompatActivity {
 
                 try{
                     String text ="";
-                    text += "\nCODE            "+  response.getJSONObject(0).getString("CCode");
-                    text += "\nNAME            "+  response.getJSONObject(0).getString("CDesc");
-                    text += "\nCREDIT          "+  response.getJSONObject(0).getString("Credits");
-                    text += "\nLEVEL           "+  response.getJSONObject(0).getString("Level");
-                    text += "\nDESCRIPTION     \n"+  response.getJSONObject(0).getString("CoName");
+
+                    text += "\nSubject : "+  response.getJSONObject(0).getString("CDesc");
+                    text += "\nCode : "+  response.getJSONObject(0).getString("CCode");
+                    text += "\nCredit : "+  response.getJSONObject(0).getString("Credits");
+                    text += "\nLevel : "+  response.getJSONObject(0).getString("Level");
+                    text += "\nDescription : "+  response.getJSONObject(0).getString("CoName");
 
                     text +="\n";
                     Log.d("volley",text);

@@ -153,7 +153,7 @@ public class DepartmentActivity extends AppCompatActivity {
                     text += "\nDepartment Code : "+  response.getJSONObject(0).getString("DCode");
                     text += "\nIn the College of : "+  response.getJSONObject(0).getString("COLLEGE_CName");
                     text += "\nLocated at : "+  response.getJSONObject(0).getString("DOffice");
-                    text += "\nYou can contact by : "+  response.getJSONObject(0).getString("DPhone");
+                    text += "\nContact : "+  response.getJSONObject(0).getString("DPhone");
 
                     text +="\n";
 

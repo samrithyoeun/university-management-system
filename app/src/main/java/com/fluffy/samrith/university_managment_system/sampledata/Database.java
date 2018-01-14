@@ -6,7 +6,7 @@ package com.fluffy.samrith.university_managment_system.sampledata;
  */
 
 public class Database {
-    public static final String HOST = "http://10.33.2.11/ums/";
+    public static final String HOST = "http://10.33.2.101/ums/";
     public static final String COLLEGE= HOST+"college.php";
     public static final String DEPARTMENT = HOST+ "department.php";
     public static final String INSTRUCTOR = HOST+ "instructor.php";

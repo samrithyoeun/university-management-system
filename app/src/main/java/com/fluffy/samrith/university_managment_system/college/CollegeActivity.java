@@ -181,12 +181,12 @@ public class CollegeActivity extends AppCompatActivity {
 
                     try{
                         String text ="";
-                        text += "\nName   :  "+  response.getJSONObject(0).getString("CName");
+                        text += "\nName :  "+  response.getJSONObject(0).getString("CName");
                         text += "\nOffice :  "+  response.getJSONObject(0).getString("COffice");
-                        text += "\nPhone  :  "+  response.getJSONObject(0).getString("CPhone");
+                        text += "\nPhone :  "+  response.getJSONObject(0).getString("CPhone");
                         text +="\n";
 
-                        text += "\nTotal Lecturer   :  "+  response.getJSONObject(1).getString("lecturer");
+                        text += "\nTotal Lecturer :  "+  response.getJSONObject(1).getString("lecturer");
                         text +="\n";
 
                         text +="\nDepartments :";

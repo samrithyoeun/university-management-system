@@ -149,22 +149,19 @@ public class ProfessorActivity extends AppCompatActivity {
 
                 try{
                     String text ="";
-                    text += "\nInstructor ID \t\t: " +  response.getJSONObject(0).getInt("_Id");
-                    text += "\nProfessor \t: "+  response.getJSONObject(0).getString("IName");
-                    text += "\nDepartment \t: "+  response.getJSONObject(1).getString("DName");
-                    text += "\nIn College \t: "+  response.getJSONObject(0).getString("college_CName");
-                    text += "\nStart work \t: "+  response.getJSONObject(0).getString("CStart_date");
-                    text += "\nOffice at \t: "+  response.getJSONObject(0).getString("IOffice");
-                    text += "\nContacts \t: "+  response.getJSONObject(0).getString("IPhone");
+
+                    text += "\nOffice : "+  response.getJSONObject(0).getString("IOffice");
+                    text += "\nContacts : "+  response.getJSONObject(0).getString("IPhone");
+                    text += "\nProfessor : "+  response.getJSONObject(0).getString("IName");
+                    text += "\nDepartment : "+  response.getJSONObject(1).getString("DName");
+                    text += "\nIn College : "+  response.getJSONObject(0).getString("college_CName");
+                    text += "\nStart work : "+  response.getJSONObject(0).getString("CStart_date");
+                    text += "\nInstructor ID : " +  response.getJSONObject(0).getInt("_Id");
+
+
 
 
                     text +="\n";
-                    text +="\nIs teaching : ";
-                    int count=2;
-                    while(count<response.length()) {
-                        text += "\n\t"+  response.getJSONObject(count).getString("CoName");
-                        count++;
-                    }
 
 
                     Log.d("volley",text);

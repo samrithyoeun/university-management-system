@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:padding="20dp"
+    android:padding="30dp"
     tools:context="com.fluffy.samrith.university_managment_system.DetailActivity">
 
     <ImageView
@@ -20,8 +20,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/text"
+        android:textStyle="bold"
         android:textColor="#000000"
         android:text="hello world "
-        android:textSize="18sp"/>
+        android:textSize="22sp"
+
+        />
 
 </LinearLayout>
