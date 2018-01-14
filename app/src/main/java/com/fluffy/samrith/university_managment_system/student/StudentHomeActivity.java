@@ -40,6 +40,7 @@ public class StudentHomeActivity extends AppCompatActivity {
         RowItemList.add( new RowItem(1,"Check\nTimetable","schedule"));
         RowItemList.add( new RowItem(2,"Professor\nInformation","professor"));
         RowItemList.add( new RowItem(4,"Personal\nInformation","student"));
+        RowItemList.add( new RowItem(6,"Check \nGrade","medal"));
         RowItemList.add( new RowItem(5,"Log out","logout"));
 
         mAdapter = new RowAdapter(this,RowItemList);
@@ -88,6 +89,11 @@ public class StudentHomeActivity extends AppCompatActivity {
 
                         finish();
                         break;
+                    case 6:
+
+                        Intent m = new Intent(getApplicationContext(),CheckGrade.class);
+                        startActivity(m);
+
                     default: Toast.makeText(getApplicationContext(), row.getName(), Toast.LENGTH_SHORT).show();
                 }
 

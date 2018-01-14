@@ -150,11 +150,13 @@ public class DepartmentActivity extends AppCompatActivity {
                 try{
                     String text ="";
                     text += "\n"+  response.getJSONObject(0).getString("DName");
-                    text += "\nDepartment Code : "+  response.getJSONObject(0).getString("DCode");
-                    text += "\nIn the College of : "+  response.getJSONObject(0).getString("COLLEGE_CName");
-                    text += "\nLocated at : "+  response.getJSONObject(0).getString("DOffice");
+                    text += "\nDepCode : "+  response.getJSONObject(0).getString("DCode");
+                    text += "\nCollege : "+  response.getJSONObject(0).getString("COLLEGE_CName");
+                    text += "\nLocated : "+  response.getJSONObject(0).getString("DOffice");
                     text += "\nContact : "+  response.getJSONObject(0).getString("DPhone");
 
+                    text +="\n";
+                    text += "\nHead Dep. : "+  response.getJSONObject(3).getString("head");
                     text +="\n";
 
                     Log.d("volley",text);

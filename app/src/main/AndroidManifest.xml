@@ -101,7 +101,8 @@
         <activity android:name=".session.SessionEditActivity" />
         <activity android:name=".course.CourseEditActivity" />
         <activity android:name=".students.StudentEditActivity" />
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".student.CheckGrade"></activity>
     </application>
 
 </manifest>

@@ -42,7 +42,7 @@ public class HomeFragment extends Fragment {
 
 
     private View root;
-    private ArrayList<RowItem> RowItemList = new ArrayList<>();
+    private ArrayList<RowItem> RowItemList;
     private RecyclerView recyclerView;
     private RowAdapter mAdapter;
 
@@ -66,6 +66,7 @@ public class HomeFragment extends Fragment {
                 int count = 0;
                 try {
 
+                    RowItemList = new ArrayList<>();
                     RowItemList.add( new RowItem(1,"College " + response.getJSONObject(0).getString("col"),"faculty"));
                     RowItemList.add( new RowItem(2,"Department "+ response.getJSONObject(1).getString("dep"),"department"));
                     RowItemList.add( new RowItem(3,"Instructor "+ response.getJSONObject(2).getString("inst"),"professor"));

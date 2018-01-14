@@ -86,7 +86,6 @@ public class CollegeActivity extends AppCompatActivity {
                                 RowItemList.add(new College(1, j.getString("CName"), j.getString("COffice"), j.getString("CPhone")));
                                 Log.d("volley", RowItemList.get(count).toString());
                                 count++;
-
                             }
 
                             mAdapter.notifyDataSetChanged();
@@ -189,8 +188,11 @@ public class CollegeActivity extends AppCompatActivity {
                         text += "\nTotal Lecturer :  "+  response.getJSONObject(1).getString("lecturer");
                         text +="\n";
 
+                        text+= "\nDean : Pro. "+ response.getJSONObject(2).getString("dean");
+
+                        text +="\n";
                         text +="\nDepartments :";
-                        int count=2;
+                        int count=3;
                         while(count<response.length()-1) {
                             JSONObject j = response.getJSONObject(count);
                             text+= "\n"+j.getString("DName");
