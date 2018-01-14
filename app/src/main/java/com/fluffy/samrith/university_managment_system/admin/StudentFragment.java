@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.fluffy.samrith.university_managment_system.R;
 import com.fluffy.samrith.university_managment_system.course.CourseActivity;
 import com.fluffy.samrith.university_managment_system.course.CourseEditActivity;
+import com.fluffy.samrith.university_managment_system.session.SessionEditActivity;
 import com.fluffy.samrith.university_managment_system.students.StudentActivity;
 import com.fluffy.samrith.university_managment_system.students.StudentEditActivity;
 
@@ -66,12 +67,12 @@ public class StudentFragment extends Fragment {
                         startActivity(i);
                         break;
                     case 2:
-                        i = new Intent(getContext(), StudentActivity.class);
+                        i = new Intent(getContext(), StudentEditActivity.class);
                         i.putExtra("func","add");
                         startActivity(i);
                         break;
                     case 3:
-                        i = new Intent(getContext(), StudentEditActivity.class);
+                        i = new Intent(getContext(), StudentActivity.class);
                         i.putExtra("func","edit");
                         startActivity(i);
                         break;

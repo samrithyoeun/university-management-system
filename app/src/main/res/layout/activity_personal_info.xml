@@ -21,8 +21,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/username"
-        android:hint="username"
+        android:id="@+id/us"
+        android:hint="Username"
         android:imeOptions="actionDone"
         android:inputType="textPersonName"
         />
@@ -30,7 +30,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/password"
+        android:id="@+id/ps"
         android:hint="password"
         android:inputType="textPassword"
         android:imeOptions="actionDone"
@@ -38,20 +38,12 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/newPassword"
+        android:id="@+id/np"
         android:hint="new password"
         android:imeOptions="actionDone"
-        android:inputType="textPassword"
+
         />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/confrimpassword"
-        android:hint="confirm new password"
-        android:imeOptions="actionDone"
-        android:inputType="textPassword"
-        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,6 +55,7 @@
             android:layout_height="wrap_content"
             android:text="SAVE CHANGE"
             android:textSize="18sp"
+
             android:layout_gravity="bottom"
             android:textColor="#ffffff"
             app:backgroundTint="@color/red"

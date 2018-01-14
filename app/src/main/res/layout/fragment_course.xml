@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/prof"
         android:id="@+id/total"
-        android:text="Total Courses :  230"
+        android:text="COURSE"
         android:textSize="24dp"
         android:textColor="#000000"
         android:textAlignment="center"

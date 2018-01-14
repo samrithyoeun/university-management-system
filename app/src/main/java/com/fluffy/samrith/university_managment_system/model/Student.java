@@ -26,6 +26,12 @@ public class Student extends RowItem{
         if (image.equals("")) image= "student";
     }
 
+    public Student(int id, String s) {
+        this.id =id;
+        this.name =s ;
+        image ="student";
+    }
+
     public String getAddress() {
         return address;
     }

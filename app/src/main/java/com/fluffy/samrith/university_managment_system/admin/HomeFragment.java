@@ -48,12 +48,12 @@ public class HomeFragment extends Fragment {
 
 
         RowItemList = new ArrayList<>();
-        RowItemList.add( new RowItem(1,"College 5","faculty"));
-        RowItemList.add( new RowItem(2,"Department 23","department"));
-        RowItemList.add( new RowItem(3,"Instructor 32","professor"));
-        RowItemList.add( new RowItem(4,"Student 300","student"));
-        RowItemList.add( new RowItem(5,"Course 23","course"));
-        RowItemList.add( new RowItem(6,"Session 213","session"));
+        RowItemList.add( new RowItem(1,"College","faculty"));
+        RowItemList.add( new RowItem(2,"Department","department"));
+        RowItemList.add( new RowItem(3,"Instructor","professor"));
+        RowItemList.add( new RowItem(4,"Student","student"));
+        RowItemList.add( new RowItem(5,"Course ","course"));
+        RowItemList.add( new RowItem(6,"Session ","session"));
 
         mAdapter = new RowAdapter(getContext(),RowItemList);
         // vertical RecyclerView

@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/prof"
         android:id="@+id/total"
-        android:text="Lucian Blaga Unversity of Sibiu \n *55 100 200"
+        android:text="HOMEPAGE"
         android:textSize="22dp"
         android:textColor="#000000"
         android:textAlignment="center"

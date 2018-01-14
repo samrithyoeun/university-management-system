@@ -20,15 +20,36 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
+        android:hint="ID"
         android:singleLine="true"
         android:imeOptions="actionNext"
-        android:id="@+id/name"/>
+        android:id="@+id/id"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Department Code"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        android:id="@+id/dc"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Firstname"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        android:id="@+id/fn"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Lastname"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        android:id="@+id/ln"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Date of Birth"
-        android:id="@+id/dob"
+        android:id="@+id/bd"
         android:singleLine="true"
         android:imeOptions="actionNext"/>
     <EditText
@@ -37,18 +58,19 @@
         android:hint="Address"
         android:singleLine="true"
         android:imeOptions="actionNext"
-        android:id="@+id/address"/>
+        android:id="@+id/ad"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Phone"
         android:singleLine="true"
         android:imeOptions="actionNext"
-        android:id="@+id/phone"/>
+        android:id="@+id/ph"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Major"
+        android:id="@+id/mj"
         android:singleLine="true"
         android:imeOptions="actionNext"/>
 

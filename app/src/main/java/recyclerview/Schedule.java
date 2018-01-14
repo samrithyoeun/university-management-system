@@ -27,8 +27,8 @@ public class Schedule {
         this.proImage = proImage;
     }
 
-    public Schedule(int id, String time, String subject, String room, String professor) {
-        this.id = id;
+    public Schedule(String time, String subject, String room, String professor) {
+
         this.time = time;
         this.subject = subject;
         this.room = room;

@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/prof"
         android:id="@+id/total"
-        android:text="Total Professors:  230"
+        android:text="COLLEGE"
         android:textSize="24dp"
         android:textColor="#000000"
         android:textAlignment="center"
