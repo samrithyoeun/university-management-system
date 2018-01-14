@@ -12,7 +12,7 @@ public class Database {
     public static final String INSTRUCTOR = HOST+ "instructor.php";
     public static final String COURSE = HOST+ "course.php";
     public static final String STUDENT = HOST+ "student.php";
-    public static final String SESSION = HOST+ "session.php";
+    public static final String SESSION = HOST+ "section.php";
 
 
     public static final String DETAIL = HOST+"detail.php";

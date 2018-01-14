@@ -2,16 +2,35 @@ package com.fluffy.samrith.university_managment_system.session;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.fluffy.samrith.university_managment_system.DetailActivity;
 import com.fluffy.samrith.university_managment_system.R;
+import com.fluffy.samrith.university_managment_system.model.Instructor;
+import com.fluffy.samrith.university_managment_system.model.Session;
+import com.fluffy.samrith.university_managment_system.professor.ProfessorEditActivity;
+import com.fluffy.samrith.university_managment_system.sampledata.Database;
+import com.fluffy.samrith.university_managment_system.sampledata.MySingleton;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -20,11 +39,11 @@ import recyclerview.RowItem;
 import recyclerview.RowListener;
 
 public class SessionActivity extends AppCompatActivity {
-
-    private SearchView searchView;
     private ArrayList<RowItem> RowItemList = new ArrayList<>();
+    private SearchView searchView;
     private RecyclerView recyclerView;
     private RowAdapter mAdapter;
+    String function;
 
 
     @Override
@@ -34,37 +53,173 @@ public class SessionActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Bundle b = new Bundle();
+        b = getIntent().getExtras();
+        function = b.getString("func");
+        switch (function) {
+            case "view":
+                this.setTitle("List of Session");
+                break;
+            case "delete": case  "edit":
+                this.setTitle("Select Session ");
 
-        this.setTitle("College");
+        }
         recyclerView = (RecyclerView) findViewById(R.id.professorList);
-
-        mAdapter = new RowAdapter(this,RowItemList);
-
-        // vertical RecyclerView
-        // keep RowItem_list_row.xml width to `match_parent`
+        mAdapter = new RowAdapter(this, RowItemList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(mAdapter);
+
+
+        String url = Database.SESSION+"?opt=getall";
+        Log.d("volley",url+"");
+        JsonArrayRequest js = new JsonArrayRequest(Request.Method.GET,url , null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("volley",url);
+                int count = 0;
+                try {
+                    while (count < response.length()) {
+                        JSONObject j = response.getJSONObject(count);
+                        RowItemList.add(new Session(j.getInt("_Id"),j.getString("DaysTime")+"\n"+j.getString("CoName")));
+                        Log.d("volley", RowItemList.get(count).toString());
+                        count++;
+
+                    }
+
+                    mAdapter.notifyDataSetChanged();
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        MySingleton.getInstance(this).addToRequestQueue(js);
+
+
         mAdapter.setOnClick(new RowListener() {
             @Override
             public void onRowClick(RowItem row) {
+                String url;
+                switch (function) {
+                    case "view":
 
+                        break;
+
+                    case "delete":
+                        url=  Database.SESSION+"?opt=del&mainkey="+row.getId();
+                        Log.d("volley",url);
+                        del(url);
+                        break;
+
+                    case "edit":
+
+                        url = Database.SESSION+"?opt=getdetail&mainkey="+row.getId();
+                        gotoUpdate(url);
+                        break;
+
+                }
             }
         });
 
-        prepareRowItemData();
-
     }
 
-    private void prepareRowItemData() {
-        RowItemList.add( new RowItem(1,"Daru Sima","schedule"));
-        RowItemList.add( new RowItem(2,"Daru Sima","professor"));
-        RowItemList.add( new RowItem(3,"Samrith Yoeun","university"));
-        RowItemList.add( new RowItem(4,"Putthira Tes","student"));
 
-        mAdapter.notifyDataSetChanged();
+
+
+
+
+
+    public void del( String url ){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Attention!");
+        builder.setMessage("Do you want to delete this entry?");
+
+        // add the buttons
+        builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Log.d("activities",this.getClass().getSimpleName());
+
+                StringRequest js = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.contains("sucess")){
+                            Toast.makeText(getApplicationContext(), "Delete this entry", Toast.LENGTH_SHORT).show();
+                            onBackPressed();
+
+                        }
+                        else{
+                            Log.d("volley",response);
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        Log.d("volley",url);
+                    }
+                });
+
+                MySingleton.getInstance(getApplicationContext()).addToRequestQueue(js);
+
+            }
+        });
+        builder.setNegativeButton("Cancel", null);
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
+    public void gotoUpdate(String url ){
+        Log.d("activities",this.getClass().getSimpleName());
 
+        JsonArrayRequest js = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("volley",url);
+
+                try{
+                    String text ="";
+                    Intent i = new Intent(getApplicationContext(),SessionEditActivity.class);
+                    i.putExtra("func","edit");
+                    i.putExtra("id", response.getJSONObject(0).getString("_Id"));
+                    i.putExtra("no",response.getJSONObject(0).getString("SecNo"));
+                    i.putExtra("se",response.getJSONObject(0).getString("Semester"));
+                    i.putExtra("sy",response.getJSONObject(0).getString("SYear"));
+                    i.putExtra("ro",response.getJSONObject(0).getString("RoomNo"));
+
+                    i.putExtra("cc", response.getJSONObject(0).getString("COURSE_CCode"));
+                    i.putExtra("ii", response.getJSONObject(0).getString("INSTRUCTOR__Id"));
+                    i.putExtra("da", response.getJSONObject(0).getString("DaysTime"));
+
+
+
+                    startActivity(i);
+                    finish();
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Log.d("volley",url);
+            }
+        });
+
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(js);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

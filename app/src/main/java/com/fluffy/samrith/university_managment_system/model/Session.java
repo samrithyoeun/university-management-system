@@ -30,6 +30,13 @@ public class Session extends RowItem{
 
     }
 
+    public Session(int id, String daysTime) {
+        this.id = id;
+        this.name = daysTime;
+        daytime =daysTime;
+        image ="session";
+    }
+
     public int getSecnumber() {
         return secnumber;
     }

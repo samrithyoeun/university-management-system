@@ -26,8 +26,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="SecNo"
-        android:id="@+id/secno"
+        android:hint="Section No."
+        android:id="@+id/no"
         android:singleLine="true"
         android:imeOptions="actionNext"/>
     <EditText
@@ -36,21 +36,21 @@
         android:hint="Semester"
         android:singleLine="true"
         android:imeOptions="actionNext"
-        android:id="@+id/semester"/>
+        android:id="@+id/se"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Year"
         android:singleLine="true"
         android:imeOptions="actionNext"
-        android:id="@+id/year"/>
+        android:id="@+id/sy"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Room"
         android:singleLine="true"
         android:imeOptions="actionNext"
-        android:id="@+id/room"/>
+        android:id="@+id/ro"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -58,7 +58,21 @@
         android:hint="DayTime"
         android:singleLine="true"
         android:imeOptions="actionNext"
-        android:id="@+id/daytime"/>
+        android:id="@+id/da"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Instructor ID"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        android:id="@+id/ii"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Course ID"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        android:id="@+id/cc"/>
     <android.support.v7.widget.AppCompatButton
         android:layout_marginTop="30dp"
         xmlns:app="http://schemas.android.com/apk/res-auto"
