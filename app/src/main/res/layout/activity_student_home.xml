@@ -22,7 +22,7 @@
     android:layout_height="wrap_content"
     android:layout_below="@id/studentProfilePicture"
     android:id="@+id/StudentName"
-    android:text="Hello Username!"
+    android:text="Hello !"
     android:textSize="24dp"
     android:textColor="#000000"
     android:textAlignment="center"

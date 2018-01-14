@@ -18,4 +18,5 @@ public class Database {
     public static final String DETAIL = HOST+"detail.php";
     public static final String  SCHEDULE = HOST+"schedule.php";
     public static String CONNECT =HOST+"user.php";
+    public static String HOME = HOST+"homepage.php";
 }
