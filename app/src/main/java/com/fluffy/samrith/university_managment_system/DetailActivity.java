@@ -47,6 +47,11 @@ public class DetailActivity extends AppCompatActivity {
                 type="course";
                 break;
 
+            case "department":
+                type = "department";
+                break;
+
+
         }
         Uri uri = Uri.parse("android.resource://"+getApplicationContext().getPackageName()+"/drawable/"+type);
         try{

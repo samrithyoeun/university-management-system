@@ -8,7 +8,7 @@ import recyclerview.RowItem;
 
 public class Department  extends RowItem{
 
-    String code;
+    int code;
     String office;
     String phone;
 
@@ -16,7 +16,7 @@ public class Department  extends RowItem{
         super(id, name, image);
     }
 
-    public Department(int id, String name, String image, String code, String office, String phone) {
+    public Department(int id, String name, String image, int code, String office, String phone) {
         super(id, name, image);
         this.code = code;
         this.office = office;
@@ -29,11 +29,17 @@ public class Department  extends RowItem{
         office =dOffice;
     }
 
-    public String getCode() {
+    public Department(int dCode, String dName) {
+            code= dCode;
+            name = dName;
+            image ="department";
+    }
+
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 

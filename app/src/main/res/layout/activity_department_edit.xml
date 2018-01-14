@@ -46,6 +46,14 @@
         android:imeOptions="actionNext"
         android:id="@+id/phone"/>
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="CName"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        android:id="@+id/CName"/>
+
     <android.support.v7.widget.AppCompatButton
         android:layout_marginTop="30dp"
         xmlns:app="http://schemas.android.com/apk/res-auto"

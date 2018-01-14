@@ -40,8 +40,8 @@ import recyclerview.RowItem;
 import recyclerview.RowListener;
 
 public class CourseActivity extends AppCompatActivity {
-    private SearchView searchView;
     private ArrayList<RowItem> RowItemList = new ArrayList<>();
+    private SearchView searchView;
     private RecyclerView recyclerView;
     private RowAdapter mAdapter;
     String function;
