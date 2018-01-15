@@ -4,8 +4,10 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -61,6 +63,14 @@ public class DetailActivity extends AppCompatActivity {
 
             case "student":
                 type = "student";
+                tx.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        Toast.makeText(getApplicationContext(), "this", Toast.LENGTH_SHORT).show();
+
+                        return true;
+                    }
+                });
                 break;
 
 
