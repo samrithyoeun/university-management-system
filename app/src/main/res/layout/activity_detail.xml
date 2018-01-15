@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
+    android:id="@+id/vg"
     android:padding="30dp"
     tools:context="com.fluffy.samrith.university_managment_system.DetailActivity">
 

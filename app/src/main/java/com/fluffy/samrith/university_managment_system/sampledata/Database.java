@@ -20,4 +20,5 @@ public class Database {
     public static String CONNECT =HOST+"user.php";
     public static String HOME = HOST+"homepage.php";
     public static String GRADE = HOST+"grade.php";
+    public static String MARK= HOST+"mark.php";
 }

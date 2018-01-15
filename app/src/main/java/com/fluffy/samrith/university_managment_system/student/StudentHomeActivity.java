@@ -80,7 +80,7 @@ public class StudentHomeActivity extends AppCompatActivity {
                         break;
                     case 5:
 
-                        SharedPreferences pref = getApplicationContext().getSharedPreferences("YOUR_PREF_NAME", MODE_PRIVATE);
+                        SharedPreferences pref = getApplicationContext().getSharedPreferences("UMS", MODE_PRIVATE);
                         SharedPreferences.Editor edt = pref.edit();
                         edt.clear();
                         edt.commit();
@@ -93,8 +93,7 @@ public class StudentHomeActivity extends AppCompatActivity {
 
                         Intent m = new Intent(getApplicationContext(),CheckGrade.class);
                         startActivity(m);
-
-                    default: Toast.makeText(getApplicationContext(), row.getName(), Toast.LENGTH_SHORT).show();
+                        break;
                 }
 
             }

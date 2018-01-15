@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import recyclerview.RowAdapter;
 import recyclerview.RowItem;
 import recyclerview.RowListener;
+import recyclerview.Schedule;
 
 public class StudentActivity extends AppCompatActivity {
 
@@ -148,18 +149,35 @@ public class StudentActivity extends AppCompatActivity {
                 Log.d("volley",url);
 
                 try{
+
+
                     String text ="";
-                    text += "\nName : " +  response.getJSONObject(0).getInt("_Id");
+                    text += "\nID : " +  response.getJSONObject(0).getInt("_Id");
+                    text += "\nName : " +  response.getJSONObject(0).getString("FName")+" "+response.getJSONObject(0).getString("LName");
                     text += "\nPhone : "+  response.getJSONObject(0).getString("Phone");
                     text += "\nMajor : "+  response.getJSONObject(0).getString("Major");
                     text += "\nAddress : "+  response.getJSONObject(0).getString("Address");
-                    text += "\nBrithday : "+  response.getJSONObject(0).getString("DOB");
+                    text += "\nBirthday : "+  response.getJSONObject(0).getString("DOB");
+
+                    text+="\n";
+                    text+="\nCOURSES : ";
+                    Log.d("volley",response.toString());
+                    int count = 1;
+                    while (count < response.length()) {
+                        JSONObject j = response.getJSONObject(count);
+                        text += "\n"+j.getString("CoName");
+                        text += "\t : "+j.getString("SECTION__Id");
+                        Log.d("volley", RowItemList.get(count).toString());
+                        count++;
+
+                    }
 
 
                     Log.d("volley",text);
                     Intent i = new Intent(getApplicationContext(), DetailActivity.class);
                     i.putExtra("text",text);
                     i.putExtra("type","student");
+                    i.putExtra("studId", response.getJSONObject(0).getInt("_Id")+"");
                     startActivity(i);
 
                 }catch (Exception e){

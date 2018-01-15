@@ -56,7 +56,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
                     try{
                         if(response.getBoolean("role")){
 
-                            SharedPreferences pref = getApplicationContext().getSharedPreferences("YOUR_PREF_NAME", MODE_PRIVATE);
+                            SharedPreferences pref = getApplicationContext().getSharedPreferences("UMS", MODE_PRIVATE);
                             SharedPreferences.Editor edt = pref.edit();
 
 

@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                         String role = response.getJSONObject(0).getString("role");
                         String sid = response.getJSONObject(0).getString("sid");
 
-                        SharedPreferences pref = getApplicationContext().getSharedPreferences("YOUR_PREF_NAME", MODE_PRIVATE);
+                        SharedPreferences pref = getApplicationContext().getSharedPreferences("UMS", MODE_PRIVATE);
                         SharedPreferences.Editor edt = pref.edit();
 
                         edt.putString("user", user);
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void checkIfUsedToLogIn(){
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("YOUR_PREF_NAME", MODE_PRIVATE);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("UMS", MODE_PRIVATE);
         if (pref.getString("role",null)!=null){
             if (pref.getString("role",null).equals("admin")) {
                 Intent i = new Intent(getApplicationContext(),Main2Activity.class);

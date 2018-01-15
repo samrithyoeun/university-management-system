@@ -40,7 +40,7 @@ public class CheckGrade extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_grade);
 
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("YOUR_PREF_NAME", MODE_PRIVATE);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("UMS", MODE_PRIVATE);
         String sid = pref.getString("sid","0");
 
         this.setTitle("Check Grade");

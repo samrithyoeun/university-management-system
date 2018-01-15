@@ -186,7 +186,7 @@ public class Main2Activity extends AppCompatActivity
 
         }else if(id ==R.id.Logout){
 
-            SharedPreferences pref = getApplicationContext().getSharedPreferences("YOUR_PREF_NAME", MODE_PRIVATE);
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("UMS", MODE_PRIVATE);
             SharedPreferences.Editor edt = pref.edit();
             edt.clear();
             edt.commit();

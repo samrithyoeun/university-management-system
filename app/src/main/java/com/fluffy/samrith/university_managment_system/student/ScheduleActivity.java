@@ -40,7 +40,7 @@ public class ScheduleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("YOUR_PREF_NAME", MODE_PRIVATE);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("UMS", MODE_PRIVATE);
         String sid = pref.getString("sid","0");
 
         String url = Database.SCHEDULE+"?id="+sid;
@@ -68,9 +68,10 @@ public class ScheduleActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
                 Log.d("volley",url);
-                int count = 0;
+
                 try {
                     Log.d("volley",response.toString());
+                    int count = 0;
                     while (count < response.length()) {
                         JSONObject j = response.getJSONObject(count);
                         RowItemList.add(new Schedule(j.getString("DaysTime"),"SUBJECT : "+ j.getString("CoName"),
